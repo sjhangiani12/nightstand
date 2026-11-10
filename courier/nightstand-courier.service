@@ -1,0 +1,19 @@
+[Unit]
+Description=Nightstand courier (Shelfmark -> Nightstand server)
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+User=books
+Group=books
+EnvironmentFile=/srv/books/courier/courier.env
+ExecStart=/usr/bin/python3 -I /srv/books/courier/courier.py
+Restart=always
+RestartSec=30
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/srv/books/courier
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

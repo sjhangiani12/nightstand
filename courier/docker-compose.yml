@@ -1,0 +1,23 @@
+# Shelfmark for Nightstand. Listens on localhost only; the courier talks to it.
+# No release source is enabled here. Sources are configured (or not) in the web UI.
+services:
+  shelfmark:
+    image: ghcr.io/calibrain/shelfmark:latest
+    container_name: shelfmark
+    environment:
+      TZ: America/New_York
+      PUID: "1500"                 # starts as root, prepares folders, then runs as books (1500)
+      PGID: "1500"
+      AUTH_METHOD: none            # localhost only; reach the UI through an SSH tunnel
+      SEARCH_MODE: universal
+      METADATA_PROVIDER: openlibrary
+      OPENLIBRARY_ENABLED: "true"
+      BOOK_LANGUAGE: en
+      SUPPORTED_FORMATS: epub,azw3,mobi
+    ports:
+      - "127.0.0.1:8084:8084"
+    volumes:
+      - /srv/books/config:/config
+      - /srv/books/books:/books
+    mem_limit: 1536m
+    restart: unless-stopped

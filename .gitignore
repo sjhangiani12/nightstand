@@ -1,0 +1,7 @@
+shots/sheet.png
+.DS_Store
+private/
+node_modules/
+.wrangler/
+.dev.vars
+__pycache__/

@@ -1,0 +1,21 @@
+#cloud-config
+# Hetzner "books" box: joins Tailscale on first boot, no public ports needed.
+users:
+  - name: me
+    groups: sudo
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ssh-ed25519 PASTE_YOUR_PUBLIC_KEY_HERE
+package_update: true
+package_upgrade: true
+packages:
+  - unattended-upgrades
+  - curl
+  - git
+runcmd:
+  - curl -fsSL https://tailscale.com/install.sh | sh
+  - tailscale up --authkey=PASTE_TAILSCALE_AUTH_KEY_HERE --ssh --hostname=books
+  - sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/; s/^#\?PasswordAuthentication.*/PasswordAuthentication no/' /etc/ssh/sshd_config
+  - systemctl restart ssh
+  - dpkg-reconfigure -f noninteractive unattended-upgrades

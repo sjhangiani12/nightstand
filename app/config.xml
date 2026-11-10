@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<widget id="com.nightstand.app" version="0.1.0" viewmodes="application" xmlns="http://www.w3.org/ns/widgets"
+    xmlns:kindle="http://kindle.amazon.com/ns/widget-extensions">
+    <name xml:lang="en">Nightstand</name>
+    <description xml:lang="en">Home, reading and the bedtime panel</description>
+    <content src="index.html" />
+    <kindle:permissions>
+        <kindle:permission name="local-port-access" />
+    </kindle:permissions>
+    <kindle:network>
+        <kindle:asset key="initialDNS" value="false" />
+        <kindle:asset key="overrideProxy" value="none" />
+        <kindle:asset key="enableCaching" value="false" />
+    </kindle:network>
+    <kindle:chrome>
+        <kindle:asset key="configureSearchBar" value="none" />
+    </kindle:chrome>
+    <kindle:gestures>
+        <kindle:param name="tap" value="yes" properties="fire_on_tap:1 max_updown_delta:0" />
+        <kindle:param name="swipe" value="yes" />
+    </kindle:gestures>
+    <feature name="http://kindle.amazon.com/apis" required="true">
+        <param name="appmgr" value="yes" />
+        <param name="net" value="yes" />
+        <param name="gestures" value="yes" />
+        <param name="chrome" value="yes" />
+        <param name="dev" value="yes" />
+        <param name="messaging" value="yes" />
+        <param name="localprefs" value="yes" />
+        <param name="device" value="yes" />
+    </feature>
+    <kindle:messaging>
+        <kindle:app name="com.lab126.pillow" value="yes" />
+        <kindle:app name="com.lab126.chromebar" value="yes" />
+    </kindle:messaging>
+    <kindle:resources>
+        <kindle:asset key="LocalStorageQuota" value="26214400" />
+    </kindle:resources>
+    <kindle:settings>
+        <kindle:setting name="internetRequired" value="no" />
+        <kindle:setting name="saveContext" value="no" />
+    </kindle:settings>
+</widget>

@@ -1,0 +1,34 @@
+name = "nightstand-server"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+TIMEZONE = "America/New_York"
+# Wake rule. The Kindle shows these; the server only reports the first meeting.
+LEAD_MINUTES = "75"
+
+[observability]
+enabled = true
+
+# Secrets (wrangler secret put):
+#   SERVER_KEY           bearer token for the Kindle, MCP and /add
+#   COURIER_KEY          bearer token for the courier on the Hetzner box
+#   OPENAI_API_KEY       article clean-up and calendar filter (Decisions API)
+#   GOOGLE_SA_KEY        service account JSON (calendar.readonly)
+#   GOOGLE_CALENDAR_IDS  calendars shared with the service account
+#   OWNER_EMAILS         my addresses, comma separated (to spot declined events)
+#   HOME_LAT, HOME_LON   home coordinates, for the weather (kept as secrets)
+#   ICS_URLS             secret iCal addresses, comma separated (instead of Google)
+#   ANTHROPIC_API_KEY    calendar filter fallback, optional
+
+# EPUB files
+[[r2_buckets]]
+binding = "BOOKS"
+bucket_name = "nightstand-books"
+
+# Items, processing logs, reading progress
+[[d1_databases]]
+binding = "DB"
+database_name = "nightstand"
+database_id = "YOUR_D1_DATABASE_ID"

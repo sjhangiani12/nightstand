@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Nightstand</title>
+<link rel="stylesheet" type="text/css" href="css/fonts.css">
+<link rel="stylesheet" type="text/css" href="css/app.css">
+</head>
+<body>
+
+<!-- 1 · Home: the "Shelf" design -->
+<div id="home" class="view">
+  <div class="h-top"><span class="h-time" id="clock">8:47</span><span class="h-date" id="date">Saturday, Nov 7</span></div>
+  <button type="button" class="corner" id="open-tonight"><span class="cmoon"></span>Tonight</button>
+
+  <div class="h-hero" id="hero"></div>
+
+  <div class="h-lib">
+    <table class="h-lib-head"><tr>
+      <td><button type="button" class="h-lib-label" id="open-library">Library</button></td>
+      <td class="r"><button type="button" class="linkish h-all" id="open-library-2">See all<span id="new-count"></span> →</button></td>
+    </tr></table>
+    <table class="h-covers"><tr id="covers"></tr></table>
+  </div>
+
+  <table class="h-strip"><tr>
+    <td id="g-first"></td>
+    <td class="c" id="g-alarm"></td>
+    <td class="r" id="g-wx"></td>
+  </tr></table>
+</div>
+
+<!-- 2 · Tonight -->
+<div id="tonight" class="view hidden">
+  <div class="sheet">
+    <table class="sheet-head"><tr>
+      <td class="title">Tonight</td>
+      <td class="r"><button type="button" class="corner inline on" id="close-tonight-top">Close</button></td>
+    </tr></table>
+
+    <div class="rule"></div>
+
+    <table class="sec-head"><tr>
+      <td class="eyebrow strong" id="cal-title">Tomorrow</td>
+      <td class="r small" id="cal-count"></td>
+    </tr></table>
+    <table class="events" id="events"></table>
+
+    <table class="alarm-card"><tr>
+      <td class="ac-main">
+        <div class="eyebrow strong" id="al-kicker">Alarm · suggested</div>
+        <div class="al-time"><span id="al-time">8:15</span> <span class="ampm" id="al-ampm">AM</span></div>
+        <div class="small" id="al-why"></div>
+      </td>
+      <td class="ac-btns">
+        <button type="button" class="btn solid" id="al-set">Set</button>
+        <button type="button" class="btn" id="al-change">Change</button>
+      </td>
+    </tr></table>
+
+    <table class="sec-head"><tr>
+      <td class="eyebrow strong">Lights · <span class="js-room">Bedroom</span></td>
+      <td class="r small">Hue</td>
+    </tr></table>
+    <table class="lamps" id="lamps"></table>
+    <button type="button" class="btn solid wide" id="lights-out">Lights out · Goodnight</button>
+
+    <table class="handle-row"><tr>
+      <td class="hl"></td>
+      <td></td>
+      <td class="hl r"><button type="button" class="linkish stock" id="stock-home">Use stock home</button></td>
+    </tr></table>
+  </div>
+  <button type="button" class="scrim" id="close-tonight">Close</button>
+</div>
+
+<!-- 2b · One lamp -->
+<div id="lamp" class="view hidden">
+  <table class="topbar"><tr>
+    <td><button type="button" class="linkish" id="lamp-back">← Tonight</button></td>
+    <td class="c eyebrow strong">Light</td>
+    <td class="r"><button type="button" class="toggle" id="lamp-toggle" aria-label="On or off"><div></div></button></td>
+  </tr></table>
+  <div class="pad">
+    <div class="lead" id="lamp-name">Desk lamp</div>
+    <div class="small" id="lamp-sub">Bedroom · Hue</div>
+    <table class="dial"><tr>
+      <td class="dl"><button type="button" class="round" id="lamp-minus" aria-label="Dimmer">−</button></td>
+      <td class="dc"><span class="dial-time" id="lamp-pct">40</span><span class="dial-ampm">%</span></td>
+      <td class="dr"><button type="button" class="round" id="lamp-plus" aria-label="Brighter">+</button></td>
+    </tr></table>
+    <table class="lsegs"><tr id="lamp-segs"></tr></table>
+    <div class="eyebrow strong preset-head">Presets</div>
+    <table class="presets" id="lamp-presets"></table>
+  </div>
+</div>
+
+<!-- 3 · Alarms -->
+<div id="alarm" class="view hidden">
+  <table class="topbar"><tr>
+    <td><button type="button" class="linkish" id="alarm-back">← Tonight</button></td>
+    <td class="c eyebrow strong">Alarms</td>
+    <td></td>
+  </tr></table>
+  <div class="pad">
+    <table class="datestep"><tr>
+      <td class="dl"><button type="button" class="round sm" id="d-prev" aria-label="Earlier day">‹</button></td>
+      <td class="dc"><div class="dlabel" id="d-label">Sun, Nov 8</div><div class="small" id="d-rel">Tomorrow</div></td>
+      <td class="dr"><button type="button" class="round sm" id="d-next" aria-label="Later day">›</button></td>
+    </tr></table>
+    <table class="dial"><tr>
+      <td class="dl"><button type="button" class="round" id="a-minus" aria-label="Earlier by 5 minutes">−</button></td>
+      <td class="dc"><span class="dial-time" id="a-time">8:15</span> <span class="dial-ampm" id="a-ampm">AM</span></td>
+      <td class="dr"><button type="button" class="round" id="a-plus" aria-label="Later by 5 minutes">+</button></td>
+    </tr></table>
+    <table class="chips"><tr>
+      <td><button type="button" class="chip" id="a-h-minus">−1 h</button></td>
+      <td><button type="button" class="chip" id="a-h-plus">+1 h</button></td>
+      <td colspan="2"><button type="button" class="chip" id="a-suggest">Suggested <span id="a-suggest-t">8:15</span></button></td>
+    </tr></table>
+    <div class="small why" id="a-why"></div>
+    <table class="vol"><tr>
+      <td class="vl">Volume<span class="small" id="a-vol-note">Sonos, 0–100</span></td>
+      <td class="vb"><button type="button" class="round sm" id="a-vol-down" aria-label="Softer">−</button></td>
+      <td class="vv" id="a-vol">10</td>
+      <td class="vb"><button type="button" class="round sm" id="a-vol-up" aria-label="Louder">+</button></td>
+    </tr></table>
+    <button type="button" class="btn solid wide tall" id="a-set">Set alarm</button>
+    <table class="sec-head"><tr><td class="eyebrow strong">Upcoming</td><td class="r small">Sonos · <span class="js-speaker">Bedroom</span></td></tr></table>
+    <table class="rows alist" id="a-list"></table>
+  </div>
+</div>
+
+<!-- 5 · Library -->
+<div id="library" class="view hidden">
+  <table class="topbar"><tr>
+    <td><button type="button" class="linkish" id="lib-back">← Home</button></td>
+    <td class="c eyebrow strong">Library</td>
+    <td class="r"><button type="button" class="linkish" id="lib-sync">Sync now</button></td>
+  </tr></table>
+  <div class="pad">
+    <table class="lib-head"><tr>
+      <td class="lib-title">Library</td>
+      <td class="r"><button type="button" class="btn light" id="open-getbook">+ Get a book</button><div class="small" id="lib-synced"></div></td>
+    </tr></table>
+    <table class="lib-tabs"><tr id="lib-tabs"></tr></table>
+    <div id="lib-list"></div>
+  </div>
+  <table class="lib-pager" id="lib-pager"><tr>
+    <td><button type="button" class="chip" id="lib-prev">‹ Prev</button></td>
+    <td class="c small" id="lib-page"></td>
+    <td class="r"><button type="button" class="chip" id="lib-next">Next ›</button></td>
+  </tr></table>
+</div>
+
+<!-- 6b · Get a book -->
+<div id="getbook" class="view hidden">
+  <table class="topbar"><tr>
+    <td><button type="button" class="linkish" id="gb-back">← Library</button></td>
+    <td class="c eyebrow strong">Get a book</td>
+    <td class="r"></td>
+  </tr></table>
+  <div class="pad">
+    <div class="gb-field"><span id="gb-text"></span><span class="gb-caret">|</span><span class="gb-hint" id="gb-hint">Title, and author if you know it</span></div>
+    <div id="gb-status" class="gb-status"></div>
+    <div id="gb-list"></div>
+  </div>
+  <div class="gb-kb" id="gb-kb"></div>
+</div>
+
+<!-- 7 · Reader -->
+<div id="reader" class="view hidden">
+  <div class="r-page" id="r-page"><div class="r-flow" id="r-flow"></div></div>
+  <div class="r-foot" id="r-foot"><span id="r-pos"></span><span class="r-left" id="r-left"></span></div>
+  <div class="r-menu hidden" id="r-menu">
+    <table class="r-top"><tr>
+      <td><button type="button" class="linkish" id="r-home">← Home</button></td>
+      <td class="r r-title" id="r-title"></td>
+    </tr></table>
+    <div class="r-bottom">
+      <table class="r-tools"><tr>
+        <td><button type="button" class="chip" id="r-smaller" aria-label="Smaller text">A−</button></td>
+        <td><button type="button" class="chip" id="r-bigger" aria-label="Larger text">A+</button></td>
+        <td colspan="2"><button type="button" class="chip" id="r-contents">Contents</button></td>
+      </tr></table>
+      <div class="small center" id="r-menupos"></div>
+    </div>
+  </div>
+  <div class="r-toc hidden" id="r-toc">
+    <table class="topbar"><tr>
+      <td><button type="button" class="linkish" id="r-toc-close">← Back to the page</button></td>
+      <td class="c eyebrow strong">Contents</td><td></td>
+    </tr></table>
+    <div class="r-toc-list" id="r-toc-list"></div>
+  </div>
+</div>
+
+<!-- 4 · Goodnight -->
+<div id="goodnight" class="view hidden dark">
+  <table class="undo" id="undo"><tr>
+    <td id="undo-text">Lights off in 10 s. Then the Kindle sleeps.</td>
+    <td class="r"><button type="button" class="btn light" id="undo-btn">Undo</button></td>
+  </tr></table>
+  <div class="gn">
+    <div class="moon"></div>
+    <div class="gn-title">Goodnight.</div>
+    <table class="gn-rows" id="gn-rows"></table>
+  </div>
+  <div class="gn-wake hidden" id="gn-wake">Tap anywhere to go back Home</div>
+  <table class="gn-foot"><tr>
+    <td id="gn-sun">Sunrise 6:34 · 41° low</td>
+    <td class="r" id="gn-book">Spidercat · 64%</td>
+  </tr></table>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script>
+// Report script errors to the local helper (the Kindle has no console).
+window.onerror = function (msg, src, line) {
+  try {
+    var x = new XMLHttpRequest();
+    x.open("GET", "http://127.0.0.1:8765/jslog?m=" + encodeURIComponent(String(msg) + " @ " + String(src).split("/").pop() + ":" + line), true);
+    x.send(null);
+  } catch (e) {}
+  return false;
+};
+</script>
+<script src="js/start.js"></script>
+<script src="js/data.js"></script>
+<script src="js/device.js"></script>
+<script src="js/reader.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

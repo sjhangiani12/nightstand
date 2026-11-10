@@ -1,0 +1,320 @@
+/* Nightstand. Every size is in px of the 618 x 824 mockup. app.js sets
+   body zoom = screen width / 618, so the layout fills the screen.
+   No rem: the Kindle's WebKitGTK (about 1.2, 2010) does not support it. */
+html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+body { background: #ffffff; color: #000; font-family: "Amazon Ember", Helvetica, Arial, sans-serif; font-size: 16px; -webkit-user-select: none; }
+button { font-family: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; -webkit-appearance: none; }
+table { border-collapse: collapse; width: 100%; }
+td { padding: 0; vertical-align: top; }
+.hidden { display: none !important; }
+.r { text-align: right; }
+.c { text-align: center; }
+.center { text-align: center; }
+
+.view { position: absolute; left: 0; top: 0; width: 618px; height: 824px; overflow: hidden; background: #ffffff; }
+.view.dark { background: #000; color: #ffffff; }
+
+.eyebrow { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #444444; }
+.eyebrow.strong { color: #000; font-weight: 600; }
+.small { font-size: 14px; color: #444444; }
+.big { font-size: 19px; font-weight: 500; margin: 4px 0; }
+.rule { height: 1px; min-height: 1px; background: #000; }
+.linkish { font-size: 14px; font-weight: 500; }
+.handle { width: 56px; height: 5px; border-radius: 3px; background: #000; margin: 0 auto; }
+
+/* ---------- Home ---------- */
+.status { position: absolute; top: 18px; left: 36px; width: 546px; font-size: 13px; color: #444444; }
+.status td { vertical-align: middle; height: 24px; width: 33%; }
+.pullhint { position: absolute; top: 4px; left: 0; right: 0; width: 100%; height: 44px; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #444444; text-align: center; }
+.hero { position: absolute; top: 84px; left: 36px; right: 36px; }
+.clock { font-family: Bookerly, Georgia, serif; font-weight: 300; font-size: 176px; line-height: 0.95; letter-spacing: -0.045em; margin-left: -6px; }
+.date { font-family: Bookerly, Georgia, serif; font-style: italic; font-size: 30px; margin: 14px 0 30px; }
+.glance { table-layout: fixed; }
+.glance td { width: 50%; padding-top: 16px; padding-right: 20px; }
+.shelf { position: absolute; left: 36px; right: 36px; bottom: 32px; }
+.shelf-head { margin-bottom: 14px; }
+.shelf-head td { vertical-align: bottom; }
+.covers { width: 564px; margin-left: -9px; table-layout: fixed; }
+.covers td { width: 25%; padding: 0 9px; }
+.cover { position: relative; height: 172px; border: 1.5px solid #000; border-radius: 3px; box-sizing: border-box; -webkit-box-sizing: border-box; overflow: hidden; }
+.cover .ck { position: absolute; top: 12px; left: 10px; font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+.cover .ct { position: absolute; top: 40px; left: 10px; right: 8px; bottom: 30px; overflow: hidden; font-family: Bookerly, Georgia, serif; font-size: 19px; line-height: 1.1; }
+.cover .ct.long { font-size: 16px; }
+.cover .ct.xlong { font-size: 14px; }
+.cover .cb { white-space: nowrap; overflow: hidden; right: 8px; }
+.cover .cb { position: absolute; bottom: 10px; left: 10px; font-size: 10px; }
+.cover.black { background: #000; color: #ffffff; }
+.cover.gray { background: #dddddd; }
+.bar { height: 3px; background: #cccccc; margin: 8px 0; overflow: hidden; }
+.bar div { height: 3px; background: #000; }
+.cover-note { font-size: 12px; color: #444444; }
+
+/* ---------- Tonight ---------- */
+#tonight { background: #bbbbbb; }
+.sheet { background: #ffffff; border-bottom: 2px solid #000; padding: 18px 32px 10px; }
+.sheet-head td { vertical-align: baseline; }
+.sheet-head .title { font-family: Bookerly, Georgia, serif; font-size: 38px; letter-spacing: -0.02em; }
+.keys { margin: 14px 0 0 -5px; width: 564px; table-layout: fixed; }
+.keys td { width: 25%; padding: 0 5px; }
+.key { width: 100%; height: 64px; border: 1.5px solid #000; border-radius: 10px; font-size: 14px; font-weight: 500; }
+.key .k1, .key .k2 { display: block; }
+.key .k2 { font-size: 12px; font-weight: 400; margin-top: 2px; }
+.key.on { background: #000; color: #ffffff; }
+.bright { margin: 14px 0; }
+.bright td { vertical-align: middle; }
+.bright .bl { width: 74px; font-size: 13px; }
+.bright .bs { width: 44px; }
+.step { width: 44px; height: 44px; font-size: 24px; }
+.segs td { padding: 0 2px; }
+.seg { height: 14px; border: 1.5px solid #000; border-radius: 2px; }
+.seg.on { background: #000; }
+.sec-head { margin: 14px 0 6px; }
+.sec-head td { vertical-align: baseline; }
+.events td { font-size: 15px; padding: 3px 0; vertical-align: baseline; }
+.events .et { width: 56px; }
+.events .el { text-align: right; font-size: 12px; letter-spacing: 0.04em; }
+.events tr.meeting td { font-weight: 600; color: #000; }
+.events tr.meeting td.el { font-weight: 400; }
+.events tr.block td { color: #555555; }
+.alarm-card { margin-top: 14px; border: 1.5px solid #000; border-radius: 12px; border-collapse: separate; }
+.alarm-card td { vertical-align: middle; }
+.ac-main { padding: 14px 16px; }
+.ac-btns { width: 96px; padding: 10px 16px 10px 0; }
+.al-time { font-family: Bookerly, Georgia, serif; font-size: 46px; line-height: 1.05; letter-spacing: -0.02em; }
+.al-time .ampm { font-size: 22px; }
+.btn { display: block; width: 96px; height: 42px; border: 1.5px solid #000; border-radius: 10px; font-size: 14px; font-weight: 500; margin: 4px 0; }
+.btn.solid { background: #000; color: #ffffff; font-weight: 600; }
+.btn.wide { width: 100%; height: 56px; font-size: 18px; border-radius: 12px; margin-top: 8px; }
+.btn.tall { height: 60px; }
+.btn.light { display: inline-block; background: #ffffff; color: #000; width: auto; padding: 0 18px; height: 40px; font-weight: 600; margin: 0; }
+.lamps td { font-size: 16px; height: 40px; vertical-align: middle; }
+.lamps .lp { width: 50px; text-align: right; font-size: 13px; color: #444444; padding-right: 12px; }
+.lamps .lt { width: 52px; }
+.toggle { width: 52px; height: 28px; border: 1.5px solid #000; border-radius: 15px; box-sizing: border-box; -webkit-box-sizing: border-box; position: relative; }
+.toggle div { position: absolute; top: 2px; left: 2px; width: 21px; height: 21px; border-radius: 11px; background: #000; }
+.toggle.on { background: #000; }
+.toggle.on div { left: auto; right: 2px; background: #ffffff; }
+.handle-row { margin-top: 8px; }
+.handle-row td { vertical-align: middle; height: 44px; }
+.handle-row .hl { width: 35%; }
+.stock { font-size: 12px; color: #444444; height: 44px; }
+.scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 60px; width: 100%; font-size: 13px; color: transparent; }
+.closehint { font-size: 12px; color: #444444; height: 44px; }
+
+/* ---------- Alarm ---------- */
+.topbar { position: absolute; top: 22px; left: 36px; width: 546px; }
+.topbar td { vertical-align: middle; height: 44px; width: 33%; }
+.topbar .linkish { font-size: 15px; height: 44px; }
+.pad { position: absolute; top: 84px; left: 36px; right: 36px; }
+.lead { font-family: Bookerly, Georgia, serif; font-size: 30px; line-height: 1.15; margin: 6px 0; }
+.dial { margin: 16px 0; border-top: 2px solid #000; border-bottom: 2px solid #000; }
+.dial td { vertical-align: middle; padding: 10px 0; }
+.dial .dl, .dial .dr { width: 72px; }
+.dial .dc { text-align: center; }
+.round { width: 72px; height: 72px; border-radius: 36px; border: 1.5px solid #000; font-size: 34px; }
+.dial-time { font-family: Bookerly, Georgia, serif; font-weight: 300; font-size: 128px; line-height: 0.95; letter-spacing: -0.045em; }
+.dial-ampm { font-size: 26px; font-weight: 500; }
+.chips { width: 556px; margin-left: -5px; table-layout: fixed; }
+.chips td { width: 25%; padding: 0 5px; }
+.chip { width: 100%; height: 56px; border: 1.5px solid #000; border-radius: 10px; font-size: 15px; font-weight: 500; }
+.chip span { display: block; font-size: 11px; font-weight: 400; }
+.chip.on { background: #000; color: #ffffff; }
+.rows { margin-top: 12px; }
+.rows td { height: 46px; vertical-align: middle; border-bottom: 1px solid #bbbbbb; font-size: 16px; }
+.rows .rv { text-align: right; font-weight: 500; }
+.bottom { position: absolute; left: 36px; right: 36px; bottom: 30px; }
+.bottom .small { margin-top: 10px; font-size: 13px; }
+
+/* ---------- Goodnight ---------- */
+.undo { position: absolute; top: 22px; left: 40px; width: 538px; border: 1.5px solid #ffffff; border-radius: 12px; border-collapse: separate; font-size: 15px; }
+.undo td { vertical-align: middle; height: 56px; padding-left: 18px; }
+.undo td.r { padding: 0 8px; }
+.gn { position: absolute; left: 40px; right: 40px; top: 190px; }
+.moon { width: 44px; height: 44px; border-radius: 22px; box-shadow: 10px -8px 0 0 #ffffff; margin: 0 0 28px 4px; }
+.gn-title { font-family: Bookerly, Georgia, serif; font-style: italic; font-weight: 300; font-size: 96px; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 28px; }
+.gn-rows { border-top: 1.5px solid #ffffff; }
+.gn-rows td { padding: 16px 0; border-bottom: 1px solid #555555; vertical-align: baseline; }
+.gn-rows .gl { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #cccccc; }
+.gn-rows .gv { text-align: right; font-size: 22px; font-weight: 500; }
+.gn-foot td { width: 50%; }
+.gn-foot { position: absolute; left: 40px; bottom: 36px; width: 538px; font-size: 13px; color: #cccccc; }
+
+.toast { position: absolute; left: 36px; right: 36px; bottom: 36px; background: #000; color: #ffffff; border-radius: 12px; padding: 16px 18px; font-size: 15px; }
+
+.sheet-head { margin-bottom: 10px; }
+.gn-wake { position: absolute; left: 40px; width: 538px; bottom: 80px; text-align: center; font-size: 14px; color: #cccccc; }
+
+/* Top-right Tonight / Close button (replaces the swipe) */
+.corner { position: absolute; top: 10px; right: 24px; height: 44px; padding: 0 16px; border: 1.5px solid #000; border-radius: 22px; font-size: 15px; font-weight: 600; background: #ffffff; }
+.corner.inline { position: static; }
+.corner.on { background: #000; color: #ffffff; }
+.cmoon { display: inline-block; width: 12px; height: 12px; border-radius: 6px; box-shadow: 4px -3px 0 0 #000; margin: 0 10px 0 2px; position: relative; top: 1px; }
+.sheet-head td { vertical-align: middle; }
+.lamps .ln { cursor: pointer; }
+.lamps .ln span { font-size: 13px; color: #444444; }
+.lsegs { margin: 6px 0 22px; table-layout: fixed; }
+.lsegs td { padding: 0 3px; }
+.lseg { width: 100%; height: 44px; border: 1.5px solid #000; border-radius: 6px; }
+.lseg.on { background: #000; }
+.preset-head { margin-bottom: 10px; }
+.presets { table-layout: fixed; width: 556px; margin-left: -5px; }
+.presets td { padding: 5px; }
+.preset { width: 100%; height: 64px; border: 1.5px solid #000; border-radius: 10px; font-size: 15px; font-weight: 600; text-align: left; padding: 0 14px; }
+.preset span { display: block; font-size: 12px; font-weight: 400; margin-top: 2px; }
+.preset.on { background: #000; color: #ffffff; }
+
+/* Alarms */
+.datestep { margin: 4px 0 0; }
+.datestep td { vertical-align: middle; }
+.datestep .dl, .datestep .dr { width: 56px; }
+.datestep .dc { text-align: center; }
+.round.sm { width: 52px; height: 52px; border-radius: 26px; font-size: 26px; }
+.dlabel { font-family: Bookerly, Georgia, serif; font-size: 30px; }
+.why { margin: 8px 0 0; min-height: 16px; }
+.alist td { height: 50px; }
+.alist .at { font-weight: 600; width: 110px; }
+.alist .as { color: #444444; font-size: 13px; }
+.alist .ax { width: 84px; text-align: right; }
+.alist .ax button { height: 36px; padding: 0 12px; border: 1.5px solid #000; border-radius: 8px; font-size: 13px; font-weight: 500; }
+.alist .empty { color: #444444; }
+
+/* Reader. Sizes set from JS (page box depends on the screen height). */
+#reader { background: #ffffff; }
+.r-page { position: absolute; left: 40px; top: 28px; overflow: hidden; }
+.r-flow { position: absolute; left: 0; top: 0; font-family: Bookerly, Georgia, serif; line-height: 1.5; color: #000; }
+.r-flow p { margin: 0 0 0.8em; }
+.r-flow h1 { font-size: 1.55em; line-height: 1.15; margin: 0 0 0.5em; }
+.r-flow h2 { font-size: 1.25em; line-height: 1.2; margin: 1.2em 0 0.5em; }
+.r-flow h3, .r-flow h4 { font-size: 1.05em; margin: 1em 0 0.4em; }
+.r-flow img { max-width: 100%; max-height: 90%; }
+.r-flow figure { margin: 1em 0; text-align: center; }
+.r-flow figcaption { font-family: "Amazon Ember", sans-serif; font-size: 0.7em; }
+.r-flow blockquote, .r-flow .aside { margin: 1em 0 1em 0.8em; padding-left: 0.7em; border-left: 2px solid #000; }
+.r-flow pre, .r-flow code { font-size: 0.8em; white-space: pre-wrap; }
+.r-flow a { color: #000; }
+.r-flow .titlepage { margin-top: 30%; }
+.r-flow .kicker, .r-flow .meta, .r-flow .source { font-family: "Amazon Ember", sans-serif; font-size: 0.7em; }
+.r-flow .kicker { letter-spacing: 0.1em; text-transform: uppercase; }
+.r-foot { position: absolute; left: 40px; width: 538px; bottom: 14px; font-size: 12px; color: #444444; }
+.r-left { float: right; }
+.r-menu { position: absolute; left: 0; top: 0; width: 618px; height: 100%; }
+.r-top { position: absolute; top: 0; left: 0; width: 618px; background: #ffffff; border-bottom: 2px solid #000; }
+.r-top td { height: 64px; vertical-align: middle; padding: 0 20px; }
+.r-title { font-size: 14px; font-weight: 600; }
+.r-bottom { position: absolute; bottom: 0; left: 0; width: 578px; padding: 14px 20px 18px; background: #ffffff; border-top: 2px solid #000; }
+.r-tools { table-layout: fixed; width: 588px; margin-left: -5px; }
+.r-tools td { padding: 0 5px; }
+.r-tools .chip { height: 52px; font-size: 18px; }
+#r-menupos { margin-top: 10px; }
+.r-toc { position: absolute; left: 0; top: 0; width: 618px; height: 100%; background: #ffffff; }
+.r-toc-list { position: absolute; top: 84px; left: 36px; width: 546px; bottom: 20px; overflow: auto; }
+.r-toc-list button { display: block; width: 100%; text-align: left; min-height: 48px; border-bottom: 1px solid #bbbbbb; font-size: 16px; padding: 8px 0; }
+.r-toc-list button.sub { padding-left: 20px; font-size: 14px; }
+.cover-btn { display: block; width: 100%; text-align: left; }
+
+/* Library */
+.lib-head td { vertical-align: baseline; }
+.lib-title { font-family: Bookerly, Georgia, serif; font-size: 44px; letter-spacing: -0.02em; }
+.lib-tabs { margin: 10px 0 4px; border-bottom: 1.5px solid #000; table-layout: fixed; }
+.lib-tabs td { padding: 0; }
+.lib-tab { width: 100%; height: 48px; font-size: 15px; text-align: left; border-bottom: 4px solid transparent; }
+.lib-tab.on { font-weight: 700; border-bottom-color: #000; }
+.lib-row { display: block; width: 100%; text-align: left; padding: 10px 0; border-bottom: 1px solid #bbbbbb; min-height: 64px; }
+.lib-row table td { vertical-align: top; }
+.lib-rt { font-family: Bookerly, Georgia, serif; font-size: 21px; line-height: 1.2; max-height: 51px; overflow: hidden; }
+.lib-rm { font-size: 13px; color: #444444; margin-top: 4px; }
+.lib-tag { width: 84px; text-align: right; }
+.lib-tag span { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 8px; border-radius: 6px; border: 1.5px solid #000; }
+.lib-tag span.new { background: #000; color: #ffffff; }
+.lib-arch { height: 36px; padding: 0 12px; border: 1.5px solid #000; border-radius: 8px; font-size: 13px; font-weight: 500; margin-top: 8px; }
+.lib-empty { padding: 28px 0; font-size: 16px; color: #444444; line-height: 1.5; }
+.lib-pager { position: absolute; left: 36px; width: 546px; bottom: 18px; }
+.lib-pager td { vertical-align: middle; width: 33%; }
+.lib-pager .chip { width: 120px; height: 48px; }
+
+/* Real cover art (Amazon books) */
+.cover.art { padding: 0; border-width: 1.5px; background: #ffffff; }
+.cover.art img { display: block; width: 100%; height: 100%; }
+.lib-thumb { width: 54px; padding-right: 14px; }
+.lib-thumb img { display: block; width: 54px; height: 80px; border: 1px solid #000; }
+.cover.art img.wide { height: auto; margin-top: 30px; }
+
+/* Article cards with a picture: image on top, natural shape, cropped by the box */
+.cover.pic { padding: 0; background: #ffffff; }
+.cover.pic .pic-img { position: absolute; left: 0; top: 0; width: 100%; height: 74px; overflow: hidden; border-bottom: 1.5px solid #000; background: #dddddd; }
+.cover.pic .pic-img img { display: block; width: 100%; }
+.cover.pic .pic-t { position: absolute; top: 84px; left: 10px; right: 8px; bottom: 28px; overflow: hidden; font-family: Bookerly, Georgia, serif; font-size: 16px; line-height: 1.1; }
+.cover.pic .pic-t.long { font-size: 14px; }
+.cover.pic .pic-t.xlong { font-size: 12.5px; }
+.lib-thumb.wide { width: 86px; }
+.lib-thumb.wide div { width: 86px; height: 56px; overflow: hidden; border: 1px solid #000; background: #dddddd; }
+.lib-thumb.wide img { display: block; width: 86px; height: auto; border: 0; }
+
+/* ---------- Home: Shelf design ---------- */
+.h-top { position: absolute; left: 36px; top: 20px; height: 40px; line-height: 40px; }
+.h-time { font-size: 22px; font-weight: 600; margin-right: 10px; }
+.h-date { font-size: 15px; color: #444444; }
+.h-hero { position: absolute; left: 0; top: 76px; width: 618px; text-align: center; }
+.h-hero-btn { display: block; width: 618px; text-align: center; }
+.h-cover { position: relative; width: 178px; height: 269px; margin: 0 auto; border: 1.5px solid #000; overflow: hidden; background: #ffffff;
+  -webkit-box-shadow: 6px 6px 0 #dddddd; box-shadow: 6px 6px 0 #dddddd; }
+.h-cover img { display: block; }
+.h-cover.text { background: #000; color: #ffffff; text-align: left; }
+.h-cover.text .ck { position: absolute; top: 16px; left: 14px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+.h-cover.text .ct { position: absolute; top: 60px; left: 14px; right: 12px; font-family: Bookerly, Georgia, serif; font-size: 24px; line-height: 1.1; }
+.h-title { font-family: Bookerly, Georgia, serif; font-size: 24px; line-height: 1.15; margin: 14px auto 0; width: 460px; max-height: 56px; overflow: hidden; }
+.h-bar { width: 178px; height: 3px; background: #cccccc; margin: 8px auto 0; overflow: hidden; }
+.h-bar div { height: 3px; background: #000; }
+.h-meta { font-size: 14px; color: #444444; margin-top: 8px; }
+.h-lib { position: absolute; left: 36px; width: 546px; bottom: 62px; }
+.h-lib-head td { vertical-align: bottom; }
+.h-lib-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #444444; height: 32px; }
+.h-all { font-size: 13px; color: #444444; height: 32px; }
+.h-covers { width: 560px; margin-left: -7px; table-layout: fixed; }
+.h-covers td { width: 25%; padding: 0 7px; vertical-align: bottom; }
+.h-tile { display: block; width: 100%; text-align: left; }
+.h-box { position: relative; width: 120px; height: 120px; overflow: hidden; border: 1px solid #000; background: #dddddd; }
+.h-box.tall { height: 180px; }
+.h-box img { display: block; }
+.h-box.text { background: #ffffff; }
+.h-box.text .ct { position: absolute; top: 10px; left: 9px; right: 8px; bottom: 8px; overflow: hidden; font-family: Bookerly, Georgia, serif; font-size: 15px; line-height: 1.12; }
+.h-cap { font-size: 12px; line-height: 1.25; margin-top: 7px; height: 30px; overflow: hidden; }
+.h-strip { position: absolute; left: 36px; width: 546px; bottom: 16px; border-top: 1.5px solid #000; table-layout: fixed; }
+.h-strip td { padding-top: 10px; font-size: 14px; white-space: nowrap; overflow: hidden; }
+.h-strip #g-first { width: 48%; }
+.h-strip #g-alarm { width: 32%; }
+.h-strip #g-wx { width: 20%; }
+.h-strip td.c { color: #444444; }
+.h-cover .ck, .h-cover .ct, .h-box .ct { display: none; }
+.h-cover.text .ck, .h-cover.text .ct, .h-box.text .ct { display: block; }
+
+/* Alarm volume */
+.vol { margin: 12px 0 10px; border-top: 1px solid #bbbbbb; border-bottom: 1px solid #bbbbbb; }
+.vol td { vertical-align: middle; height: 66px; }
+.vol .vl { font-size: 16px; }
+.vol .vl span { display: block; margin-top: 2px; font-size: 12px; }
+.vol .vb { width: 60px; text-align: center; }
+.vol .vv { width: 70px; text-align: center; font-size: 26px; font-weight: 500; }
+
+/* ---------- Get a book ---------- */
+.lib-head .btn.light { height: 40px; font-size: 15px; }
+.lib-head #lib-synced { margin-top: 6px; }
+.gb-field { border: 1.5px solid #000; border-radius: 12px; height: 60px; line-height: 60px; padding: 0 16px; font-family: Bookerly, Georgia, serif; font-size: 24px; overflow: hidden; white-space: nowrap; }
+.gb-caret { font-family: sans-serif; font-weight: 300; }
+.gb-hint { font-family: sans-serif; font-size: 16px; color: #666666; margin-left: 4px; }
+.gb-status { font-size: 15px; color: #000; line-height: 1.4; margin: 12px 0 4px; min-height: 21px; }
+.gb-row { width: 100%; border-bottom: 1px solid #bbbbbb; }
+.gb-row td { padding: 12px 0; vertical-align: middle; }
+.gb-row .gb-get { width: 92px; text-align: right; }
+.gb-rt { font-family: Bookerly, Georgia, serif; font-size: 21px; line-height: 1.2; max-height: 51px; overflow: hidden; }
+.gb-rm { font-size: 13px; color: #444444; margin-top: 4px; }
+.gb-kb { position: absolute; left: 12px; right: 12px; bottom: 14px; }
+.gb-kb table { width: 100%; table-layout: fixed; margin-top: 6px; }
+.gb-kb td { padding: 0 3px; }
+.gb-kb button { width: 100%; height: 56px; border: 1.5px solid #000; border-radius: 9px; font-size: 21px; font-weight: 500; }
+.gb-kb button.wide { font-size: 16px; }
+.gb-kb button.go { background: #000; color: #ffffff; font-weight: 600; }
+.coming-h { margin: 14px 0 2px; }
+.lib-row.coming .lib-rm { color: #000; }
+.bar { height: 8px; border: 1.5px solid #000; border-radius: 5px; margin-top: 8px; width: 60%; }
+.bar div { height: 100%; background: #000; }
